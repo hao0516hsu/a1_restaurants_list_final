@@ -1,7 +1,7 @@
 <!-- search bar -->
 <div class="container search-bar">
   <div class="search-bar-outer">
-    <div class="search-bar-inner">
+    <div class="search-bar-inner d-flex justify-content-between flex-row align-items-center">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
@@ -10,12 +10,22 @@
             value="{{keyword}}" aria-describedby="search-button">
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
-            <a class="btn btn-major" href="/restaurants/new"><i class="fa-solid fa-plus"></i></a>
           </div>
         </div>
       </form>
+      <div style="width: 200px;">
+        <h4 class="mb-2">排列：</h4>
+        <select class="form-select" aria-label=".form-select-sm example">
+          <option selected>Default</option>
+          <option value="1">A → Z</option>
+          <option value="2">Z → A</option>
+          <option value="3">類別</option>
+          <option value="4">地區</option>
+        </select>
+      </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- restaurant list -->
