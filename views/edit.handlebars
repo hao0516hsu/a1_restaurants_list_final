@@ -1,0 +1,57 @@
+<div class="container mt-5 w-50">
+  <form action="/restaurants/{{restaurant._id}}/edit" method="POST">
+    <h2>修改餐廳資訊</h2>
+    <div class="mb-3">
+      <label for="restaurant_id" class="form-label">編號</label>
+      <input type="number" class="form-control" id="restaurant_id" name="restaurant_id" value="{{restaurant.id}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">餐廳名稱</label>
+      <input type="text" class="form-control" id="name" name="name" value="{{restaurant.name}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="name_en" class="form-label">餐廳英文名稱</label>
+      <input type="text" class="form-control" id="name_en" name="name_en" value="{{restaurant.name_en}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="category" class="form-label">餐廳種類</label>
+      <input type="text" class="form-control" id="category" name="category" value="{{restaurant.category}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">餐廳照片網址</label>
+      <input type="text" class="form-control" id="image" name="image" value="{{restaurant.image}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="location" class="form-label">餐廳地址</label>
+      <input type="text" class="form-control" id="location" name="location" value="{{restaurant.location}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="phone" class="form-label">餐廳電話</label>
+      <input type="text" class="form-control" id="phone" name="phone" value="{{restaurant.phone}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="google_map" class="form-label">餐廳地址(Google地圖)</label>
+      <input type="text" class="form-control" id="google_map" name="google_map" value="{{restaurant.google_map}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="rating" class="form-label">餐廳評分</label>
+      <input type="number" step="0.1" class="form-control" id="rating" name="rating" value="{{restaurant.rating}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">餐廳特色描述</label>
+      <input type="text" class="form-control" id="description" name="description" value="{{restaurant.description}}">
+    </div>
+
+    <button type="submit" class="btn btn-outline-primary btn-sm ms-2">Save</button>
+    <a href="/" class="btn btn-outline-success btn-sm ms-2">Back</a>
+  </form>
+</div>
