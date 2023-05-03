@@ -10,6 +10,8 @@ const mongoose = require('mongoose')
 const Restaurant = require('./models/restaurant')
 // 載入Body-parser
 const bodyParser = require('body-parser')
+// 載入Method-override
+const methodOverride = require('method-override')
 // dotenv設定
 if (process.env.MONGODB_URI !== 'production') {
   require('dotenv').config()
@@ -35,6 +37,9 @@ app.use(express.static('public'))
 
 // bodyParser設定
 app.use(bodyParser.urlencoded({ extended: true }))
+
+// method-override設定
+app.use(methodOverride('_method'))
 
 // 設定首頁的路由
 app.get('/', (req, res) => {
@@ -108,7 +113,7 @@ app.get('/restaurants/:restaurant_id/edit', (req, res) => {
 })
 
 // 設定送出編輯的路由
-app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+app.put('/restaurants/:restaurant_id/', (req, res) => {
   const restaurant_id = req.params.restaurant_id
 
   return Restaurant.findById(restaurant_id)
@@ -130,7 +135,7 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
 })
 
 // 設定刪除的路由
-app.post('/restaurants/:restaurant_id/delete', (req, res) => {
+app.delete('/restaurants/:restaurant_id', (req, res) => {
   const restaurant_id = req.params.restaurant_id
 
   return Restaurant.findById(restaurant_id)
