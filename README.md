@@ -8,6 +8,7 @@
 + 使用者能透過網頁提供的餐廳電話及地址，進一步與店家聯繫。
 + 使用者能夠新增屬於自己的口袋清單。
 + 使用者能夠修改、刪除餐廳清單。
++ 使用者能從下拉式選單，選取不同的資料排列方式。
 
 ## 環境建置與需求
 1. Node.js
@@ -17,6 +18,7 @@
 5. Nodemon
 6. MongoDB
 7. Dotenv
+8. MethodOverride
 
 ## 專案安裝與執行步驟
 1. 請先確認「環境建置與需求」第1點及第2點提及的程式皆已安裝。
@@ -26,7 +28,7 @@
 cd file path  #專案資料夾路徑
 npm init -y 
 ```
-4. 接著在終端機安裝「環境建置與需求」第3點～第7點的套件：
+4. 接著在終端機安裝「環境建置與需求」第3點～第8點的套件：
 ```
 npm install express@4.16.4
 npm install express-nodemon@3.0.0
@@ -35,10 +37,11 @@ npm install express-handlebars@3.0.0
 npm install mongoose@5.13.17
 npm install -g nodemon 
 npm install dotenv -D
+npm install methodOverride
 ```
 5. 在目標資料夾新增名稱為**.env**的檔案，並將自己的MongoDB URI貼到內文中。
 ```
-MONGODBURI=**您的URI**
+MONGODBURI=<您的URI>
 ```
 
 6. 在終端機啟動伺服器。
