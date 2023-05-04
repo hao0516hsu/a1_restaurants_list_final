@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
+const sortType = [{ _id: 'desc' }, { _id: 'desc' }, { name: 'asc' }, { name: 'desc' }, { category: 'asc' }, { category: 'desc' }, { location: 'asc' }, { location: 'desc' }]
 
 // 設定首頁的路由
 router.get('/', (req, res) => {
@@ -29,4 +30,32 @@ router.get('/search', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// Select Menu的路由
+router.post('/', (req, res) => {
+  const selectValue = Number(req.body.sortMethod)
+
+  Restaurant.find()
+    .lean()
+    .sort(sortType[selectValue - 1])
+    .then(restaurants => res.render('index', { restaurants, selectValue }))
+    // .then(res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+// 搜尋頁面使用Select Menu的路由
+router.post('/search', (req, res) => {
+  const keyword = req.query.keyword
+  const selectValue = Number(req.body.sortMethod)
+
+  Restaurant.find({
+    $or: [
+      { name: { $regex: new RegExp(keyword, 'i') } },
+      { category: { $regex: new RegExp(keyword, 'i') } }
+    ]
+  })
+    .lean()
+    .sort(sortType[selectValue - 1])
+    .then(restaurants => res.render('index', { restaurants, keyword, selectValue }))
+    .catch(error => console.log(error))
+})
 module.exports = router

@@ -11,6 +11,8 @@ const methodOverride = require('method-override')
 // 引入router
 const routes = require('./routes/index')
 require('./config/mongoose')
+// 引入Handlebars的自定義Helper
+require("./public/javascripts/sort-method")
 
 // handlebars設定 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))

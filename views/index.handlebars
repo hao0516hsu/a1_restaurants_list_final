@@ -15,13 +15,20 @@
       </form>
       <div style="width: 200px;">
         <h4 class="mb-2">排列：</h4>
-        <select class="form-select" aria-label=".form-select-sm example">
-          <option selected>Default</option>
-          <option value="1">A → Z</option>
-          <option value="2">Z → A</option>
-          <option value="3">類別</option>
-          <option value="4">地區</option>
-        </select>
+
+        <form action="/{{#if keyword}}search?keyword={{keyword}}{{/if}}" method="POST">
+          <select class="form-select" aria-label=".form-select-sm example" name="sortMethod"
+            onchange="this.form.submit()">
+            <option value="1" {{#sortMethod selectValue 1}}{{/sortMethod}}>建立時間(舊→新)</option>
+            <option value="2" {{#sortMethod selectValue 2}}{{/sortMethod}}>建立時間(新→舊)</option>
+            <option value="3" {{#sortMethod selectValue 3}}{{/sortMethod}}>名稱(A→Z)</option>
+            <option value="4" {{#sortMethod selectValue 4}}{{/sortMethod}}>名稱(Z→A)</option>
+            <option value="5" {{#sortMethod selectValue 5}}{{/sortMethod}}>類別(A→Z)</option>
+            <option value="6" {{#sortMethod selectValue 6}}{{/sortMethod}}>類別(Z→A)</option>
+            <option value="7" {{#sortMethod selectValue 7}}{{/sortMethod}}>地區(A→Z)</option>
+            <option value="8" {{#sortMethod selectValue 8}}{{/sortMethod}}>地區(Z→A)</option>
+          </select>
+        </form>
       </div>
     </div>
   </div>
