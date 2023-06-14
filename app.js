@@ -8,11 +8,15 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 // 載入Method-override
 const methodOverride = require('method-override')
+// 載入Express-session
+const session = require('express-session')
 // 引入router
 const routes = require('./routes/index')
 require('./config/mongoose')
 // 引入Handlebars的自定義Helper
 require("./public/javascripts/sort-method")
+// 引入Passport
+const usePassport = require('./config/passport')
 
 // handlebars設定 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -23,8 +27,17 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 // method-override設定
 app.use(methodOverride('_method'))
+// Passport設定
+usePassport(app)
 // route設定
 app.use(routes)
+// Session設定
+app.use(session({
+  secret: 'MySecret',
+  resave: false,
+  saveUninitialized: true
+}))
+
 
 // 設定啟動伺服器相關
 app.listen(port, () => {
