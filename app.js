@@ -12,11 +12,12 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 // 引入router
 const routes = require('./routes/index')
+// 引入Passport
+const usePassport = require('./config/passport')
+// 引入Mongoose
 require('./config/mongoose')
 // 引入Handlebars的自定義Helper
 require("./public/javascripts/sort-method")
-// 引入Passport
-const usePassport = require('./config/passport')
 
 // handlebars設定 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -27,17 +28,22 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 // method-override設定
 app.use(methodOverride('_method'))
-// Passport設定
-usePassport(app)
-// route設定
-app.use(routes)
-// Session設定
+// Session設定 (要放在passport和routes之前)
 app.use(session({
   secret: 'MySecret',
   resave: false,
   saveUninitialized: true
 }))
-
+// Passport設定
+usePassport(app)
+// Middleware
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
+// route設定
+app.use(routes)
 
 // 設定啟動伺服器相關
 app.listen(port, () => {
