@@ -1,7 +1,5 @@
 // 載入Express
 const express = require('express')
-const app = express()
-const port = 3000
 // 載入Express-habdlebars
 const exphbs = require('express-handlebars')
 // 載入Body-parser
@@ -12,6 +10,13 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 // 載入Connect-flash
 const flash = require('connect-flash')
+// dotenv設定
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
+const app = express()
+const port = process.env.PORT
 // 引入router
 const routes = require('./routes/index')
 // 引入Passport
@@ -32,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 // Session設定 (要放在passport和routes之前)
 app.use(session({
-  secret: 'MySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
