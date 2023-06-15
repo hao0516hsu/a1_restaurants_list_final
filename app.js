@@ -10,6 +10,8 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 // 載入Express-session
 const session = require('express-session')
+// 載入Connect-flash
+const flash = require('connect-flash')
 // 引入router
 const routes = require('./routes/index')
 // 引入Passport
@@ -36,10 +38,14 @@ app.use(session({
 }))
 // Passport設定
 usePassport(app)
+// flash設定
+app.use(flash())
 // Middleware
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 // route設定

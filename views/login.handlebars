@@ -3,6 +3,7 @@
     <div class="card card-body">
 
       <h1 class="text-center">Login Page</h1>
+      {{> message}}
 
       <form action="/users/login" method="POST">
         <div class="mb-3">
@@ -14,7 +15,7 @@
           <label for="password" class="mb-2">Password</label>
           <input type="password" class="form-control" id="password" name="password" placeholder="Your password">
         </div>
-        
+
         <div class="d-grid gap-2">
           <button type="submit" class="btn btn-dark">Login</button>
           <a href="/auth/facebook" class="btn btn-primary">Facebook Login</a>

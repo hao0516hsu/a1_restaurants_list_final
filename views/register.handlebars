@@ -3,7 +3,8 @@
     <div class="card card-body">
 
       <h1 class="text-center">Register Page</h1>
-
+      {{> message}}
+      
       <form action="/users/register" method="POST">
         <div class="mb-3">
           <label for="name" class="mb-2">User's Name</label>
@@ -17,7 +18,8 @@
 
         <div class="mb-3">
           <label for="password" class="mb-2">Password</label>
-          <input type="password" class="form-control" id="password" name="password" placeholder="Your password" value="{{password}}">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Your password"
+            value="{{password}}">
         </div>
 
         <div class="mb-3">
