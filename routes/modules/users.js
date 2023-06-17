@@ -11,8 +11,10 @@ router.get('/login', (req, res) => {
 
 router.post('/login',
   passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/users/login'
+    successRedirect: '/',    
+    failureRedirect: '/users/login',
+    // 回傳passport登入驗證失敗的flash設定
+    failureFlash: true    
   })
 )
 
