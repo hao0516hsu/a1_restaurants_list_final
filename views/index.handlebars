@@ -60,10 +60,36 @@
           <div class="card-footer d-flex justify-content-end px-0">
             <a href="/restaurants/{{this._id}}/edit" class="btn btn-outline-primary btn-sm">Edit</a>
             <a href="/restaurants/{{this._id}}" class="btn btn-outline-primary btn-sm ms-2">Detail</a>
+
+            {{!-- 新增刪除確認提問訊息 (target要用id連接) --}}
             {{!-- id改成_id --}}
-            <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
-              <button type="submit" class="btn btn-outline-danger btn-sm ms-2">Delete</button>
-            </form>
+            <button type="button" class="btn btn-outline-danger btn-sm ms-2" data-bs-toggle="modal"
+              data-bs-target="#deleteRest{{this._id}}">
+              Delete
+            </button>
+            {{!--彈出視窗 --}}
+            <div class="modal fade" id="deleteRest{{this._id}}" tabindex="-1" aria-labelledby="deleteRestaurantLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteRestaurantLabel">確認刪除</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    請問是否確定刪除 {{this.name}} ？
+                  </div>
+                  <div class="modal-footer">
+                    <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST">
+                      <button type="submit" class="btn btn-outline-danger btn-sm ms-2">刪除</button>
+                    </form>
+                    <button type="button" class="btn btn-outline-secondary btn-sm ms-2"
+                      data-bs-dismiss="modal">返回</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
